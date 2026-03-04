@@ -5,12 +5,8 @@ export default async function handler(req, res) {
   const url = req.query.url;
   if (!url) { res.status(400).json({ error: 'Missing url' }); return; }
   try {
-    const response = await fetch(url, {
-      headers: { 'x-apisports-key': '5563bef84cf2b9ed8ae9fda5d64f1cff' }
-    });
-    const data = await response.json();
-    res.status(200).json(data);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+    const r = await fetch(url, { headers: { 'x-apisports-key': '5563bef84cf2b9ed8ae9fda5d64f1cff' } });
+    const d = await r.json();
+    res.status(200).json(d);
+  } catch(e) { res.status(500).json({ error: e.message }); }
 }
